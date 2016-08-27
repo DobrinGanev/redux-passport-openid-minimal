@@ -1,6 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { fetchMessage } from '../actions/messageActions';
+import Message from '../components/Message'
+
 export class App extends Component {
   constructor(props) {
     super(props);
@@ -8,18 +10,15 @@ export class App extends Component {
   componentDidMount() {
       this.props.dispatch(fetchMessage())
   }
-
   render() {
     return (
           <div>
-            <header>
-
-            </header>
             <div>
               <h2>App</h2>
-              {this.props.children}
+              <Message messages={this.props.messages}/>
             </div>
             <p>Loading : {this.props.isLoading.toString()}</p>
+            <a href="/logout">Log Out</a>
           </div>
     );
   }
